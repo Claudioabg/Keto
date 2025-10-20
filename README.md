@@ -1,20 +1,38 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# App de Seguimiento Keto y Entrenamiento
 
-# Run and deploy your AI Studio app
+Este proyecto es una aplicación diseñada para ser un asistente personal en el seguimiento de un estilo de vida cetogénico (dieta keto) y una rutina de entrenamiento. El objetivo es facilitar la programación semanal, registrar el progreso y mantener toda la información relevante en un solo lugar.
 
-This contains everything you need to run your app locally.
+## ⭐ Contexto del Proyecto
 
-View your app in AI Studio: https://ai.studio/apps/drive/1dBduYbcl27PH0PAk-QRusf7hdtY_Uoni
+Esta aplicación fue generada inicialmente utilizando herramientas de IA como un proyecto personal para organizar mi propia rutina. No tengo experiencia profesional en programación, por lo que el enfoque principal está en la funcionalidad y la simplicidad.
 
-## Run Locally
+## 🎯 Características Principales de la App
 
-**Prerequisites:**  Node.js
+El objetivo es que la aplicación pueda realizar las siguientes tareas:
 
+* **Programación Nutricional Semanal:**
+    * Planificar las comidas para cada día de la semana.
+    * Registrar recetas y macros (carbohidratos, proteínas, grasas).
+    * Generar una lista de compras basada en el plan semanal.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+* **Planificación de Entrenamiento:**
+    * Asignar rutinas de ejercicio a días específicos de la semana.
+    * Llevar un registro de series, repeticiones y pesos levantados.
+
+* **Registro y Seguimiento de Progreso:**
+    * Anotar el peso corporal diario o semanal.
+    * Subir fotos de progreso para comparaciones visuales.
+    * Registrar medidas corporales (cintura, cadera, etc.).
+    * Visualizar el progreso a lo largo del tiempo con gráficos simples.
+
+## 🛠️ Estado Actual y Petición de Ayuda
+
+El código base ha sido generado por una IA y estoy en proceso de aprender a modificarlo y mejorarlo.
+
+Actualmente, estoy buscando colaboración o consejos en las siguientes áreas:
+
+1.  **Revisión de Código:** Agradecería que alguien con experiencia pudiera darle un vistazo general a la estructura del proyecto y señalar posibles mejoras o errores comunes.
+2.  **Base de Datos:** Tengo dudas sobre cuál es la mejor manera de estructurar la base de datos para guardar las comidas, los entrenamientos y el progreso de forma eficiente.
+3.  **Interfaz de Usuario (UI):** Cualquier sugerencia para hacer la app más intuitiva y fácil de usar es bienvenida.
+
+Cualquier tipo de feedback es increíblemente valioso. ¡Muchas gracias por tomarte el tiempo de revisar mi proyecto!

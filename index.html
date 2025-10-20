@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://aistudiocdn.com/react@^19.2.0",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+        "react/": "https://aistudiocdn.com/react@^19.2.0/",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.25.0"
+      }
+    }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            font-weight: 300;
+            background-color: #050a19;
+            /* Ketone molecule */
+            background-image:
+                url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 100 100'%3e%3cg fill='none' stroke='rgba(0, 191, 255, 0.1)' stroke-width='3'%3e%3ccircle cx='30' cy='50' r='10'/%3e%3ccircle cx='70' cy='50' r='15'/%3e%3cpath d='M40 50 L60 50'/%3e%3cpath d='M70 35 V 25 L 80 20' stroke-width='2'/%3e%3c/g%3e%3c/svg%3e"),
+                /* Runner silhouette & EKG */
+                url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100' viewBox='0 0 200 100'%3e%3cpath d='M10 80 L30 80 L35 70 L45 90 L50 80 L190 80' stroke='rgba(0, 255, 255, 0.08)' stroke-width='1.5' fill='none'/%3e%3cpath d='M50 40 a 5 5 0 0 1 5 -5 h 10 a 5 5 0 0 1 5 5 v 20 h -20 z m 10 -15 a 5 5 0 1 1 0 -10 a 5 5 0 0 1 0 10' fill='rgba(0, 191, 255, 0.12)'/%3e%3c/svg%3e"),
+                /* Football pattern */
+                url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3e%3cdefs%3e%3cpattern id='hex' patternUnits='userSpaceOnUse' width='50' height='86.6' viewBox='0 0 50 86.6'%3e%3cpolygon points='25,0 50,43.3 25,86.6 0,43.3' fill='none' stroke='rgba(0, 191, 255, 0.07)' stroke-width='1'/%3e%3c/pattern%3e%3c/defs%3e%3crect width='100%25' height='100%25' fill='url(%23hex)'/%3e%3c/svg%3e"),
+                /* Grid and base gradient */
+                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to right, rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(160deg, rgba(13, 12, 61, 1) 0%, rgba(0, 119, 255, 0.7) 50%, rgba(75, 0, 130, 0.8) 100%);
+            background-repeat: no-repeat, no-repeat, repeat, repeat, repeat, no-repeat;
+            background-size: 150px, 200px, auto, 50px 50px, 50px 50px, 100% 100%;
+            background-position: 10% 20%, 85% 75%, 0 0, 0 0, 0 0, 0 0;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .glass-effect {
+             background-color: rgba(255, 255, 255, 0.10);
+             backdrop-filter: blur(10px);
+             -webkit-backdrop-filter: blur(10px);
+             border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .control-btn {
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px rgba(255,255,255,0.5);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+        }
+        .control-btn:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.6), inset 0 0 5px rgba(0, 255, 255, 0.4);
+        }
+        .control-btn-sm {
+            transition: all 0.3s ease;
+            text-shadow: 0 0 3px rgba(255,255,255,0.4);
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+        }
+        .control-btn-sm:hover {
+             box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), inset 0 0 3px rgba(0, 255, 255, 0.3);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #2a2a3e; }
+        ::-webkit-scrollbar-thumb { background: #5a5a7a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #7a7a9a; }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fade-in-up 0.3s ease-out forwards;
+        }
+
+        @media print {
+            body {
+                background: none !important;
+                color: black !important;
+                font-family: sans-serif;
+            }
+            .text-gray-200 { color: black !important; }
+            .no-print { display: none !important; }
+            .container {
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+            .weekly-plan-container {
+                display: block !important;
+            }
+            .day-column {
+                display: block !important;
+                page-break-inside: avoid;
+                margin-bottom: 1rem;
+                border: 1px solid #ccc;
+                background: white !important;
+                box-shadow: none !important;
+                color: black !important;
+            }
+            .day-column h4, .day-column .text-white { color: black !important; }
+            .meal-card {
+                background: #f9f9f9 !important;
+                border: 1px solid #eee;
+                color: black !important;
+            }
+            .meal-card h5, .meal-card p { color: black !important; }
+            .day-column .control-btn-sm { display: none !important; }
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
